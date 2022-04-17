@@ -1,5 +1,5 @@
 # action.yaml
-name: 'pbc v22.3.0'
+name: 'Python Blacken'
 description: 'Customisable GitHub action to use black to check Python code in your repository'
 branding:
   icon: 'code'
@@ -13,14 +13,15 @@ inputs:
     description: 'The number of characters allowed per line.'
     required: false
     default: '81'
-  include:
-    description: 'A regular expression that matches files and directories that should be included on recursive searches.'
+  sanity-check:
+    description: 'Sanity check [fast|safe]'
     required: false
-    default: '\.pyi?$'
-  exclude:
-    description: 'A regular expression that matches files and directories that should be excluded on recursive searches.'
+    default: 'fast'
+  only-check:
+    description: 'Only check the files instead of modify them [yes|no] '
     required: false
-    default: '/(\.direnv|\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|\.svn|_build|buck-out|build|dist)/'
+    default: 'yes'
+
 outputs:
   output:
     description: 'The output of black.'
@@ -29,7 +30,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.sanity-check }}
     - ${{ inputs.line-length }}
+    - ${{ inputs.only-check }}
     - ${{ inputs.path }}
-    - ${{ inputs.include }}
-    - ${{ inputs.exclude }}

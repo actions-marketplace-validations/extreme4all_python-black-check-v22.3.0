@@ -1,9 +1,14 @@
 
-# this repository is [forked](https://github.com/rodrigogiraoserrao/python-black-check), i only changed the black version.
-i did this for personal use but anyone can use this, all credits go to the original creator
+# Copy right
+I am not the original author, i just increased the requirements because the original author didn't, the focus of this repo is primarily for my own.
 
-# python-black-check
+[Original](https://github.com/piotrpawlaczek/python-blacken)
+
+# python-blacken [new]
+
 A customisable GitHub action to check the style of Python code with [black](https://github.com/psf/black).
+
+Uses black version **22.1.0**
 
 # Inputs
 You can use inputs to alter how `black` will check your code.
@@ -16,31 +21,26 @@ This tells `black` where to look for files to check.
 ## Line-length (optional)
 This tells `black` how long each line of Python code can be.
 
-**Default**: `81`, which is _different_ from `black`'s default of `88`.
+## Sanity-check (optional)
+If --fast given, skip temporary sanity checks. Options `[fast|safe]`. Default `fast`.
 
-## Include (optional)
-This tells `black` which files we should verify the format of.
-
-**Default**: `\.pyi?$`, which matches `black`'s default value.
-
-## Exclude (optional)
-This tells `black` which files we should ignore.
-
-**Default**: `/(\.direnv|\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|\.svn|_build|buck-out|build|dist)/`, which matches `black`'s default value.
+## Only-check (optional)
+Only check the files instead of modify them. Options `[yes|no]`. Default `yes`.
 
 # Example usage
 Include this in your `.github/workflows/main.yaml`:
 
 ```yaml
 uses: extreme4all/python-black-check-v22.3.0@master
+
 ```
 or, if you want to override any of the defaults,
 
 ```yaml
 uses: extreme4all/python-black-check-v22.3.0@master
 with:
-  line-length: '81'
+  line-length: '88'
   path: '.'
-  include: 'apps'
-  exclude: '(/*.html|/*.mo|/*.po|/*.png|/*.rst)'
+  sanity-check: 'safe'
+  only-check: 'no'
 ```
