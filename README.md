@@ -1,3 +1,7 @@
+
+# this repository is [forked](https://github.com/rodrigogiraoserrao/python-black-check), i only changed the black version.
+i did this for personal use but anyone can use this, all credits go to the original creator
+
 # python-black-check
 A customisable GitHub action to check the style of Python code with [black](https://github.com/psf/black).
 
@@ -28,12 +32,12 @@ This tells `black` which files we should ignore.
 Include this in your `.github/workflows/main.yaml`:
 
 ```yaml
-uses: RojerGS/python-black-check@master
+uses: extreme4all/python-black-check-v22.3.0@master
 ```
 or, if you want to override any of the defaults,
 
 ```yaml
-uses: RojerGS/python-black-check@master
+uses: extreme4all/python-black-check-v22.3.0@master
 with:
   line-length: '81'
   path: '.'
